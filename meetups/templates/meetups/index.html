@@ -1,0 +1,28 @@
+{% extends 'meetups/base/base.html' %} <!-- importa o template base -->
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    {% block title %}All Mettups{% endblock %}
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+    {% endblock %}
+</head>
+    {% block main_heading %}
+    We got somthing
+    {% endblock %}
+    {% block content %}
+    <p>other thing</p>   
+    {% endblock %}
+    {% block body %}
+        <section>
+            <h2>Upcoming meeutps</h2>
+            <ol>
+                <!--include: outra opção para importar pagina/código de outro arquivo-->
+                <!--podemos definir variavieis que serão jogadas para o arquivo importado-->
+                {% for meetup_item in meetups %}
+                    {% include 'meetups/includes/meetup-item.html' with title=meetup_item.title image=meetup_item.image.url location='New York' slug=meetup_item.slug %} 
+                {% endfor %}
+            </ol>
+        </section>
+    {% endblock %}
